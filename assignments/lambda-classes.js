@@ -1,148 +1,164 @@
 // CODE here for your Lambda Classes
 
-/*
-- We have a school to build here! This project will get you used to thinking about classes in JavaScript and building them from a brand new data set.
-* Lambda personnel can be broken down into three different types of people.
-    - Instructors - extensions of Person
-    - Students - extensions of Person
-    - Project Managers - extensions of Instructors
-IMPORTANT - You'll need to create 2 - 3 objects for each class and test them according to their unique Attributes. For example:
-​
-const fred = new Instructor({
-  name: 'Fred',
-  location: 'Bedrock',
-  age: 37,
-  favLanguage: 'JavaScript',
-  specialty: 'Front-end',
-  catchPhrase: `Don't forget the homies`
-});
-​
-*/
+// * CLASSES * //
 
-// * First we need a Person class. This will be our `base-class`
-// * Person receives `name` `age` `location` all as props
-// * Person receives `speak` as a method.
-// * This method logs out a phrase `Hello my name is Fred, I am from Bedrock` where `name` and `location` are the object's own props
-
+// * Person Class * //
 class Person {
-    constructor(attr){
-        this.newName = attr.name;
-        this.newAge = attr.age;
-        this.newLocation = attr.location;
-    }
-    speak(){
-        return `Hello my name is ${this.newName}, I am from ${this.newLocation}`
-    }
+  constructor(attr) {
+    this.name = attr.name;
+    this.age = attr.age;
+    this.location = attr.location;
+    this.subject = attr.subject;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
 
+
+// * Instructor Class * //
 class Instructor extends Person {
-    constructor(teacherAttr){
-        super(teacherAttr);
-        this.speciality = teacherAttr.speciality;
-        this.favLanguage = teacherAttr.favLanguage;
-    }//closes constructor
-catchPhase(){
-    return `I am the best at ${this.speciality} and ${this.favLanguage}.`
-}//closes prototype
+  constructor(teacherAttr) {
+    super(teacherAttr);
+    this.speciality = teacherAttr.speciality;
+    this.favLanguage = teacherAttr.favLanguage;
+    this.studentName = teacherAttr.studentName;
+  } //closes constructor
 
-demo(){
-    return  `Today we are learning about ${this.subject}' where subject is the param passed in.`
-}//closes prototype
+  // * Prototype Methods
+  catchPhase() {
+    return `I am the best at ${this.speciality} and ${this.favLanguage}.`;
+  } //closes prototype
 
-grade(){
-    return `${this.name} receives a perfect score on ${this.subject}`
-}//closes prototype
+  demo() {
+    return `Today we are learning about ${this.subject}`;
+  } //closes prototype
 
-};//closes class
+  grade() {
+        return `${studentOne.name} receives a perfect score on ${this.subject}.`
+  } //closes prototype
+} //closes class
 
+// * PM class * //
 class Pm extends Instructor {
-    constructor(pmAttr){
-        super(pmAttr);
-        this.gradClassName = pmAttr.gradClassName;
-        this.favInstructor = pmAttr.favInstructor;
-    } //closes constructor
-    standup(){
-        return `${this.name} announces to ${this.channel}, @channel standup time!`
-    }
-}//closes class
+  constructor(pmAttr) {
+    super(pmAttr);
+    this.gradClassName = pmAttr.gradClassName;
+    this.favInstructor = pmAttr.favInstructor;
+    this.channel = pmAttr.channel;
+  } //closes constructor
 
+  // * Prototype Methods
+  standUp() {
+    return `${this.name} announces to ${this.channel}, @channel standup time!`;
+  } //closes prototype
 
+  debugsCode() {
+    return `${this.name} debugs ${studentOne.name}'s code on ${studentOne.subject}`;
+  } //closes prototype
+} //closes class
+
+// * Student Class * //
 class Student extends Person {
-    constructor(studentAttr){
-        super(studentAttr);
-        this.prevBg = studentAttr.prevBg;
-        this.className = studentAttr.className;
-        this.favSubjects = studentAttr.favSubjects;
-    } //closes constructor
-}//closes class
+  constructor(studentAttr) {
+    super(studentAttr);
+    this.prevBg = studentAttr.prevBg;
+    this.className = studentAttr.className;
+    this.favSubjects = studentAttr.favSubjects;
+    this.score = studentAttr.score;
+  }; //closes constructor
 
+  // * Prototype Methods
+  listsSubject() {
+    return `${this.favSubjects}`;
+  }; //closes prototype
 
+  prAssignment() {
+    return `${this.name} has submitted a PR for ${this.subject}`;
+  }; //closes prototype
 
-// * Instructor has the following unique props:
-//   * `specialty` what the Instructor is good at i.e. 'redux'
-//   * `favLanguage` i.e. 'JavaScript, Python, Elm etc.'
-//   * `catchPhrase` i.e. `Don't forget the homies`
-// * Instructor has the following methods:
-//   * `demo` receives a `subject` string as an argument and logs out the phrase 'Today we are learning about {subject}' where subject is the param passed in.
-//   * `grade` receives a `student` object and a `subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
-const instructor = new Instructor({
-    name: 'Mr. Jones',
-    age: 34,
-    location: 'USA',
-    speciality: 'redux',
-    favLanguage: 'Javascript',
-    catchPhrase: 'I am the best at redux and Javascript.'
-});//ends object
+  sprintChallenge() {
+    return `${this.name} has begun sprint challenge on ${this.subject}`;
+  }; //closes prototype
+} //closes class
 
-const projectManager = new Pm({
-    name: 'Emily',
-    age: 23,
-    location: 'USA',
-    speciality: 'redux',
-    favLanguage: 'Python',
-    catchPhrase: "If you can't teach Python, then you aint worth it.",
-    gradClassName: 'WEB20',
-    favInstructor: 'Brit Hemming'
+// * OBJECTS * //
+const instructorOne = new Instructor({
+  name: "Mr. Jones",
+  age: 34,
+  location: "USA",
+  subject: 'Javascript',
+  speciality: "react",
+  favLanguage: "Javascript",
+  catchPhrase: "I am the best at react and Javascript."
 }); //ends object
 
-const student = new Student({
-    name: 'Anna',
-    age: 18,
-    location: 'Canada',
-    prevBg: 'HTML/CSS',
-    className: 'WEB23',
-    favSubjects: 'Math and Science'
+const instructorTwo = new Instructor({
+    name: "Ms.Standfield",
+    age: 42,
+    location: "UK",
+    subject: 'Python',
+    speciality: "API",
+    favLanguage: "Python",
+    catchPhrase: "I am the best at API and Python."
+  }); //ends object
+
+const projectManagerOne = new Pm({
+  name: "Emily",
+  age: 23,
+  location: "USA",
+  speciality: "react",
+  favLanguage: "Python",
+  catchPhrase: "You can't teach Python to a monkey",
+  gradClassName: "WEB20",
+  favInstructor: "Mr. Jones",
+  channel: 'web23_emily'
 }); //ends object
-console.log(instructor.name);
-console.log(projectManager.name);
-console.log(student.name)
 
-// * If the student's grade is above a 70% let them graduate! 
-//   * Otherwise go back to grading their assignments to increase their score.
+const projectManagerTwo = new Pm({
+    name: "Natasha",
+    age: 30,
+    location: "Canada",
+    speciality: "react",
+    favLanguage: "Javascript",
+    catchPhrase: "Git down or be square",
+    gradClassName: "WEB10",
+    favInstructor: "Mrs. Standfield",
+    channel: 'web23_Natasha'
+  }); //ends object
 
+const studentOne = new Student({
+  name: "Anna",
+  age: 18,
+  location: "Canada",
+  subject:'Javascript',
+  prevBg: "HTML/CSS",
+  className: "WEB23",
+  favSubjects: "[Javascript, HTML/CSS]"
+}); //ends object
 
+const studentTwo = new Student({
+    name: "Jenkins",
+    age: 31,
+    location: "UK",
+    subject:'React',
+    prevBg: "Python",
+    className: "WEB22",
+    favSubjects: "[Javascript, HTML/CSS, React, API, Python]"
+  }); //ends object
 
-// * ProjectManagers are extensions of Instructors
-// * Project Manger has the following unique props:
-// * `gradClassName`: i.e. CS1
-//   * `favInstructor`: i.e. Sean
-// * ProjectManagers have the following Methods:
-//   * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!
-//   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
-
-
-
-// * Student has the following unique props:
-//   * `previousBackground` i.e. what the Student used to do before Lambda School
-//   * `className` i.e. CS132
-//   * `favSubjects`. i.e. an array of the student's favorite subjects ['Html', 'CSS', 'JavaScript']
-// * Student has the following methods:
-//   * `listsSubjects` a method that logs out all of the student's favoriteSubjects one by one.
-//   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
-//   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
-
-
-
+// * LOGS * //
+console.log(instructorOne.name);
+console.log(projectManagerTwo.location);
+console.log(studentOne.name);
+console.log(studentOne.listsSubject());
+console.log(instructorOne.demo());
+console.log(studentTwo.prAssignment());
+console.log(studentTwo.sprintChallenge());
+console.log(instructorTwo.grade());
+console.log(instructorTwo.catchPhase());
+console.log(projectManagerOne.standUp());
+console.log(projectManagerTwo.debugsCode());
 /*
 Stretch Problem
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
