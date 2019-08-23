@@ -15,7 +15,6 @@ class Person {
   }
 }
 
-
 // * Instructor Class * //
 class Instructor extends Person {
   constructor(teacherAttr) {
@@ -83,6 +82,12 @@ class Student extends Person {
 } //closes class
 
 // * OBJECTS * //
+const fred = new Person({
+    name: 'Fred',
+    location: 'Bedrock',
+    age: 37
+  });
+
 const instructorOne = new Instructor({
   name: "Mr. Jones",
   age: 34,
@@ -159,6 +164,7 @@ console.log(instructorTwo.grade());
 console.log(instructorTwo.catchPhase());
 console.log(projectManagerOne.standUp());
 console.log(projectManagerTwo.debugsCode());
+console.log(fred.speak())
 /*
 Stretch Problem
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
